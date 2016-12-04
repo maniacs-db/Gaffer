@@ -3,15 +3,11 @@ cache:
   directories:
   - $HOME/.m2
 jdk:
-  - oraclejdk8
+  - oraclejdk7
 sudo: false
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
 install: true
 env:
   - MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
-script: mvn -q test -PreducedMemory
+script: mvn -q clean test -PreducedMemory
 after_success:
   - bash <(curl -s https://codecov.io/bash)
